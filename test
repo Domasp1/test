@@ -1,15 +1,100 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local Window = OrionLib:MakeWindow({Name = "KEY", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "KEY", HidePremium = false, SaveConfig = true, ConfigFolder = "ETKExploits"})
+
+player = game.Players.LocalPlayer
+
+function Loggedin()
+    OrionLib:MakeNotification({
+        Name = "Logged in.",
+        Content = "You are logged in as "..player.Name..".",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+
+function correctkey()
+    OrionLib:MakeNotification({
+        Name = "Correct key!",
+        Content = "You have entered the correct key.",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+
+function incorrectkey()
+    OrionLib:MakeNotification({
+        Name = "Incorrect key.",
+        Content = "You have entered the Incorrect key.",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+
+setclipboard("")
 
 function makegui()
-    local Window = OrionLib:MakeWindow({Name = "ETKexploits", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+    local Window = OrionLib:MakeWindow({Name = "ETKexploits", HidePremium = false, SaveConfig = true, ConfigFolder = "ETKhub"})
 
     local Tab = Window:MakeTab({
-        Name = "ETKhub",
+        Name = "Scripts",
         Icon = "rbxassetid://4483345998",
         PremiumOnly = false
     })
+
+    Tab:AddButton({
+        Name = "ERLC Script",
+        Callback = function()
+            loadstring(game:HttpGet("https://awakenrobloxscripts.000webhostapp.com/erlc"))() 
+          end    
+    })
+
+    Tab:AddButton({
+        Name = "BedWars Script",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/cocotv666/script/main/RavenB4Unpatched.lua"))() 
+          end    
+    })
+
+    Tab:AddButton({
+        Name = "Sword fight script",
+        Callback = function()
+local range = 1000
+local player = game:GetService("Players").LocalPlayer
+
+local function isFriendWith(player1, player2)
+    return player1:IsFriendsWith(player2.UserId)
+end
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    local players = game.Players:GetPlayers()
+    for i = 2, #players do
+        local otherPlayer = players[i]
+        local character = otherPlayer.Character
+        if not isFriendWith(player, otherPlayer) then
+            local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+            if tool and tool:FindFirstChild("Handle") then
+                tool:Activate()
+                for _, part in next, character:GetChildren() do
+                    if part:IsA("BasePart") then
+                        firetouchinterest(tool.Handle, part, 0)
+                        firetouchinterest(tool.Handle, part, 1)
+                    end
+                end
+            end
+        end
+    end
+end) 
+          end    
+    })
+
+    Tab:AddButton({
+        Name = "BABFT Script",
+        Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/XRoLLu/UWU/main/BUILD%20A%20BOAT%20FOR%20TREASURE.lua'))()
+          end    
+    })
+    
 end
 
 local Tab = Window:MakeTab({
@@ -25,7 +110,7 @@ _G.input = "string"
 Tab:AddTextbox({
 	Name = "Enter Key",
 	Default = "",
-	TextDisappear = true,
+	TextDisappear = false,
 	Callback = function(value)
         _G.input = value
 	end	  
@@ -37,8 +122,10 @@ Tab:AddButton({
 	Name = "check key",
 	Callback = function()
         if _G.input == _G.Key then
+            correctkey()
             makegui()
             else
+                incorrectkey()
         end
   	end    
 })

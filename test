@@ -25,19 +25,18 @@ Tab:AddTextbox({
 	Name = "Enter Key",
 	Default = "",
 	TextDisappear = true,
-	Callback = function(Value)
+	Callback = function(text)
 	end	  
 })
 
-_G.KeyInput = Value
 
 
 Tab:AddButton({
 	Name = "check key",
 	Callback = function()
-      		if _G.KeyInput == key then
-                makegui()
-            end
+        if text == _G.Key then
+            makegui()
+        end
   	end    
 })
 

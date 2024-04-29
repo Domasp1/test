@@ -13,6 +13,13 @@ function Loggedin()
     })
 end
 
+OrionLib:MakeNotification({
+	Name = "Link copyed",
+	Content = "Link to key has been copyed",
+	Image = "rbxassetid://4483345998",
+	Time = 3
+})
+
 function correctkey()
     OrionLib:MakeNotification({
         Name = "Correct key!",
@@ -31,7 +38,7 @@ function incorrectkey()
     })
 end
 
-setclipboard("")
+setclipboard("https://direct-link.net/1169115/step-one")
 
 function makegui()
     local Window = OrionLib:MakeWindow({Name = "ETKexploits", HidePremium = false, SaveConfig = true, ConfigFolder = "ETKhub"})
